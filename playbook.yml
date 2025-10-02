@@ -1,0 +1,18 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: Run apt update
+      apt:
+        update_cache: yes
+        cache_valid_time: 0   # 毎回必ず update
+
+    - name: Upgrade all packages
+      apt:
+        upgrade: dist
+        autoremove: yes
+
+    - name: Install ubuntu desktop
+      apt:
+        name: ubuntu-desktop
+        state: present
